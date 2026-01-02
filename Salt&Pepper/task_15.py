@@ -71,3 +71,16 @@ decipher = BlockTranspositionCipher(encrypted, key, decrypt=True)
 decrypted = ''.join(decipher)
 print(f"\nПолный расшифрованный текст: '{decrypted}'")
 '''
+
+class BlockTranspositionCipher():
+    def __init__(self, text, key, decrypt=False):
+        self.text = text
+        self.key = key
+        self.encrypted = None
+        self.decrypt = decrypt
+
+    def __iter__(self):
+        ...
+
+    def __next__(self):
+        ...

@@ -22,6 +22,6 @@ try:
     evens = EvenNumbers(5)
 
     for num in evens:
-        print(num) # Должно вывести 0, 2, 4, 6, 8
+        print(num)
 except TypeError as ex:
     print(f'Ваша ошибка: {ex}')
