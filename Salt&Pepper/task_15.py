@@ -1,7 +1,7 @@
 import string
 
 class BlockTranspositionCipher():
-    def __init__(self, text, key, decrypt=False):
+    def __init__(self, text: str, key: str, decrypt=False):
         self.text = text
         self.key = key.lower()
         self.decrypt = decrypt
@@ -9,8 +9,8 @@ class BlockTranspositionCipher():
 
         if not self.key.isalpha():
             raise ValueError('Ключ должен содержать только буквы')
-        if len(set(key)) == len(key):
-            raise ValueError('Все буквы ключа должны быть уникальными')
+        if len(set(key)) != len(key):
+            raise ValueError('Все элементы ключа должны быть уникальными')
         
         self.block_size = len(key)
         self._prepare_permutation()
@@ -28,7 +28,7 @@ class BlockTranspositionCipher():
 
     def _create_block(self):
         text_len = len(self.text)
-        self.blocks = [self.text[i:i + self.block_size].ljust(self.block_size) for i in range(0, len(text_len), self.block_size)]
+        self.blocks = [self.text[i:i + self.block_size].ljust(self.block_size) for i in range(0, text_len, self.block_size)]
 
     def __iter__(self):
         self.index = 0
