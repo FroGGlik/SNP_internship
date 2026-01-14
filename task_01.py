@@ -1,11 +1,23 @@
 import re
 
-def is_palindrome(text: str):
+def is_palindrome(text):
+    if isinstance(text, int):
+        str_num = str(text)
+        return str_num == str_num[::-1]
+
     if not isinstance(text, str):
         return False
-    pattern = r'[a-zA-Z]'
-    string_only_alph = re.findall(pattern, text.lower())
-    return string_only_alph == string_only_alph[::-1]
+
+    pattern_letters = r'[a-zA-Z]'
+    letters = re.findall(pattern_letters, text.lower())
+
+    pattern_digits = r'\d'
+    digits = re.findall(pattern_digits, text)
+
+    combined = letters + digits
+
+    return combined == combined[::-1]
+
 
 print(is_palindrome("A man, a plan, a canal -- Panama"))
 print(is_palindrome("Madam, I'm Adam!"))
