@@ -1,21 +1,20 @@
 def max_odd(your_list: list):
-    numbers_list = []
+    max_odd_num = None
 
     for element in your_list:
         if isinstance(element, (int, float)):
-            numbers_list.append(element)
-    
-    if numbers_list:
-        max_el = numbers_list[0]
-    else:
-        return None
+            if isinstance(element, float):
+                if not element.is_integer():
+                    continue
+                element_int = int(element)
+            else:
+                element_int = element
 
-    for num in numbers_list:
-        if num > max_el:
-            max_el = num
-    
-    return max_el
+            if element_int % 2 != 0:
+                if (max_odd_num is None) or (element > max_odd_num):
+                    max_odd_num = element
 
+    return max_odd_num
 
 
 print(max_odd([1, 2, 3, 4, 4]))
