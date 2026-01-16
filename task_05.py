@@ -1,10 +1,13 @@
 import datetime
 
-def date_in_future(days: int):
+def date_in_future(days):
+    now = datetime.datetime.now()
     if isinstance(days, int):
-        return datetime.datetime.now() + datetime.timedelta(days=days)
+        future_date = now + datetime.timedelta(days=days)
     else:
-        return datetime.datetime.now()
+        future_date = now
+
+    return future_date.strftime('%d-%m-%Y %H:%M:%S')
 
 
 print(date_in_future([]))
