@@ -3,7 +3,7 @@ class Dessert():
         self._name = name
         self._calories = calories
         self._is_healthy = None
-        self._is_delisious = True
+        self._is_delicious = True
     
     @property
     def name(self):
@@ -15,11 +15,14 @@ class Dessert():
 
     @property
     def calories(self):
-        return self._name
-    
+        return self._calories
+
     @calories.setter
     def calories(self, value):
-        self._calories = value
+        if isinstance(value, str) and value.isdigit():
+            self._calories = int(value)
+        else:
+            self._calories = value
 
     def get_info(self):
         return self._name, self._calories
@@ -34,14 +37,17 @@ class Dessert():
         self._is_healthy = self._calories < 200
     
     def __str__(self):
-        info = f'Название блюда: {self._name}\nКалорийность блюда: {self._calories}\nЗдоровое ли блюдо: {'Да' if self.is_healthy() else 'Нет'}\nВкусное ли блюдо: {'Да' if self.is_delicious() else 'Нет'}\n'
+        info = f'Название блюда: {self._name}\nКалорийность блюда: {self._calories}\nЗдоровое ли блюдо: {"Да" if self.is_healthy() else "Нет"}\nВкусное ли блюдо: {"Да" if self.is_delicious() else "Нет"}'
         return info
 
-try:
-    dessert1 = Dessert('Шоколадный торт', 450)
-    dessert2 = Dessert('Салат "весенний"', 150)
 
-    print(dessert1)
-    print(dessert2)
+desserts = []
+
+try:
+    desserts.append(Dessert("Шоколадный торт", 450))
+    desserts.append(Dessert("Салат 'весенний'", 150))
+
+    for d in desserts:
+        print(d)
 except TypeError:
     print('Введите правильное кол-во аргументов')
