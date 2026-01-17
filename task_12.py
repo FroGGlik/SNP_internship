@@ -1,11 +1,9 @@
-# from task_11 import Dessert
-# Можно просто импортировать класс Dessert из нашего файла или создать новый в этом файле.
-class Dessert():
+class Dessert:
     def __init__(self, name='Unnamed', calories=0):
         self._name = name
         self._calories = calories
         self._is_healthy = None
-        self._is_delisious = True
+        self._is_delicious = True
     
     @property
     def name(self):
@@ -17,10 +15,12 @@ class Dessert():
 
     @property
     def calories(self):
-        return self._name
-    
+        return self._calories
+        
     @calories.setter
     def calories(self, value):
+        if not isinstance(value, (int, float)):
+            raise ValueError("Калорийность должна быть числом.")
         self._calories = value
 
     def get_info(self):
@@ -36,12 +36,17 @@ class Dessert():
         self._is_healthy = self._calories < 200
     
     def __str__(self):
-        info = f'Название блюда: {self._name}\nКалорийность блюда: {self._calories}\nЗдоровое ли блюдо: {'Да' if self.is_healthy() else 'Нет'}\nВкусное ли блюдо: {'Да' if self.is_delicious() else 'Нет'}\n'
+        info = (
+            f'Название блюда: {self._name}\n'
+            f'Калорийность блюда: {self._calories}\n'
+            f'Здоровое ли блюдо: {"Да" if self.is_healthy() else "Нет"}\n'
+            f'Вкусное ли блюдо: {"Да" if self.is_delicious() else "Нет"}'
+        )
         return info
 
 
 class JellyBean(Dessert):
-    def __init__(self, name='Unnamed', calories=0, flavor = 'Unknown'):
+    def __init__(self, name='Unnamed', calories=0, flavor='Unknown'):
         super().__init__(name, calories)
         self._flavor = flavor
 
@@ -57,13 +62,16 @@ class JellyBean(Dessert):
         return self._name, self._calories, self._flavor
 
     def is_delicious(self):
-        if self._flavor == 'black licorice':
-            return False
-        else:
-            return True
+        return self._flavor.lower() != 'black licorice'
 
     def __str__(self):
-        info = f'Название блюда: {self._name}\nКалорийность блюда: {self._calories}\nЗдоровое ли блюдо: {'Да' if self.is_healthy() else 'Нет'}\nВкусное ли блюдо: {'Да' if self.is_delicious() else 'Нет это black licorice'}\n'
+        info = (
+            f'Название блюда: {self._name}\n'
+            f'Калорийность блюда: {self._calories}\n'
+            f'Здоровое ли блюдо: {"Да" if self.is_healthy() else "Нет"}\n'
+            f'Вкусное ли блюдо: {"Да" if self.is_delicious() else "Нет, это black licorice"}'
+        )
+
         return info
 
 
