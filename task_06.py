@@ -22,14 +22,14 @@ def rps_game_winner(players):
         raise NoSuchStrategyError('Invalid move for player 2')
     
     if move1 == move2:
-        return players[0]
+        return ' '.join(players[0])
 
     elif (move1 == 'P' and move2 == 'R') or \
          (move1 == 'R' and move2 == 'S') or \
          (move1 == 'S' and move2 == 'P'):
-        return players[0]
+        return ' '.join(players[0])
     else:
-        return players[1]
+        return ' '.join(players[1])
     
 try:
     print(rps_game_winner([['player1', 'P'], ['player2', 'S'], ['player3', 'S']]))
@@ -39,5 +39,6 @@ try:
     print(rps_game_winner([['player1', 'P'], ['player2', 'A']]))
 except NoSuchStrategyError as ex:
     print('NoSuchStrategyError')
+    
 print(rps_game_winner([['player1', 'P'], ['player2', 'S']]))
 print(rps_game_winner([['player1', 'P'], ['player2', 'P']]))
