@@ -39,6 +39,6 @@ try:
     print(rps_game_winner([['player1', 'P'], ['player2', 'A']]))
 except NoSuchStrategyError as ex:
     print('NoSuchStrategyError')
-    
+
 print(rps_game_winner([['player1', 'P'], ['player2', 'S']]))
 print(rps_game_winner([['player1', 'P'], ['player2', 'P']]))

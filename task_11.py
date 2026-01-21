@@ -1,10 +1,9 @@
-class Dessert():
+class Dessert:
     def __init__(self, name='Unnamed', calories=0):
         self._name = name
-        self._calories = calories
-        self._is_healthy = None
-        self._is_delicious = True
-    
+        self._calories = 0
+        self.calories = calories
+
     @property
     def name(self):
         return self._name
@@ -19,10 +18,15 @@ class Dessert():
 
     @calories.setter
     def calories(self, value):
-        if isinstance(value, str) and value.isdigit():
-            self._calories = int(value)
-        else:
+        if isinstance(value, str):
+            if value.isdigit():
+                self._calories = int(value)
+            else:
+                self._calories = 0
+        elif isinstance(value, int):
             self._calories = value
+        else:
+            self._calories = 0
 
     def get_info(self):
         return self._name, self._calories
@@ -37,8 +41,10 @@ class Dessert():
         self._is_healthy = self._calories < 200
     
     def __str__(self):
-        info = f'Название блюда: {self._name}\nКалорийность блюда: {self._calories}\nЗдоровое ли блюдо: {"Да" if self.is_healthy() else "Нет"}\nВкусное ли блюдо: {"Да" if self.is_delicious() else "Нет"}'
-        return info
+        return (f'Название блюда: {self._name}\n'
+                f'Калорийность блюда: {self._calories}\n'
+                f'Здоровое ли блюдо: {"Да" if self.is_healthy() else "Нет"}\n'
+                f'Вкусное ли блюдо: {"Да" if self.is_delicious() else "Нет"}')
 
 
 desserts = []
