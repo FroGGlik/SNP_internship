@@ -1,7 +1,6 @@
 class Dessert:
-    def __init__(self, name='Unnamed', calories=0):
+    def __init__(self, name='Unnamed', calories=None):
         self._name = name
-        self._calories = 0
         self.calories = calories
 
     @property
@@ -15,9 +14,10 @@ class Dessert:
     @property
     def calories(self):
         return self._calories
-
+    
     @calories.setter
     def calories(self, value):
+        print(f"Setting calories to {value}")
         if isinstance(value, str):
             if value.isdigit():
                 self._calories = int(value)
@@ -27,9 +27,6 @@ class Dessert:
             self._calories = value
         else:
             self._calories = 0
-
-    def get_info(self):
-        return self._name, self._calories
     
     def is_healthy(self):
         return self._calories < 200
@@ -52,6 +49,7 @@ desserts = []
 try:
     desserts.append(Dessert("Шоколадный торт", 450))
     desserts.append(Dessert("Салат 'весенний'", 150))
+    desserts.append(Dessert())
 
     for d in desserts:
         print(d)
